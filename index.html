@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Colosseum — Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.">
+  <title>COLOSSEUM — Creative Agency</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
+    }
+    .hero-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
+    .hero-video-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.65) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: right;
+      padding: 0 80px;
+      max-width: 720px;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-condensed);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+    .hero-eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+    .hero-headline { font-family: var(--font-display); font-size: clamp(64px, 9vw, 128px); line-height: 0.9; letter-spacing: 0.02em; color: var(--white); margin-bottom: 24px; }
+    .hero-headline span { color: var(--gold); }
+    .hero-sub { font-family: var(--font-condensed); font-size: clamp(16px, 2vw, 20px); font-weight: 300; letter-spacing: 0.06em; color: var(--light-grey); margin-bottom: 48px; line-height: 1.5; }
+    .hero-ctas { display: flex; gap: 16px; justify-content: flex-end; }
+
+    /* ─── LOGO CAROUSEL ─── */
+    .logos-section {
+      background: var(--dark);
+      padding: 40px 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,215,0,0.12);
+      border-bottom: 1px solid rgba(255,215,0,0.12);
+    }
+    .logos-label {
+      text-align: center;
+      font-family: var(--font-condensed);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 28px;
+    }
+    .logos-track-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .logos-track-wrap::before,
+    .logos-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+    }
+    .logos-track-wrap::before { left: 0; background: linear-gradient(to right, var(--dark), transparent); }
+    .logos-track-wrap::after { right: 0; background: linear-gradient(to left, var(--dark), transparent); }
+    .logos-track {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      animation: scroll-logos 30s linear infinite;
+      width: max-content;
+    }
+    .logos-track:hover { animation-play-state: paused; }
+
+    /* Logo image items */
+    .logo-item {
+      height: 40px;
+      width: auto;
+      opacity: 0.4;
+      filter: brightness(0) invert(1);
+      transition: opacity 0.3s;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .logo-item:hover { opacity: 0.8; }
+
+    /* Fallback text for logos without images */
+    .logo-item-text {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.35);
+      white-space: nowrap;
+      transition: color 0.3s;
+      padding: 0 16px;
+    }
+    .logo-item-text:hover { color: rgba(255,255,255,0.75); }
+
+    @keyframes scroll-logos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── FEATURED WORK ─── */
+    .work-section { padding: 120px 80px; background: var(--black); }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); letter-spacing: 0.04em; line-height: 0.95; }
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .work-card { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; background: var(--dark); }
+    .work-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
+    .work-card:hover .work-card-img { transform: scale(1.06); }
+    .work-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.1) 60%);
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 32px;
+      transition: background 0.4s;
+    }
+    .work-card:hover .work-card-overlay { background: linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.3) 60%); }
+    .work-card-label { font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .work-card-title { font-family: var(--font-display); font-size: 26px; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .work-card-desc { font-size: 13px; color: var(--light-grey); line-height: 1.6; margin-bottom: 20px; max-width: 280px; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+    .work-card:hover .work-card-desc { opacity: 1; transform: translateY(0); }
+    .work-card-link { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(8px); transition: all 0.4s ease 0.05s; }
+    .work-card:hover .work-card-link { opacity: 1; transform: translateY(0); }
+    .work-card-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .pvl-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a0a 100%); }
+    .endzn-bg { background: linear-gradient(135deg, #0a0a1a 0%, #1a0a0a 100%); }
+    .raw-bg { background: linear-gradient(135deg, #0a1a0a 0%, #0a0a1a 100%); }
+    .qb-bg { background: linear-gradient(135deg, #1a0a0a 0%, #0a1a1a 100%); }
+    .pvl2-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1500 100%); }
+    .endzn2-bg { background: linear-gradient(135deg, #100a1a 0%, #0a100a 100%); }
+    .card-icon { font-size: 48px; opacity: 0.15; }
+
+    /* ─── SERVICES ─── */
+    .services-section { padding: 120px 80px; background: var(--dark); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px; }
+    .service-card { background: rgba(0,0,0,0.4); padding: 48px 40px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { background: rgba(255,215,0,0.04); }
+    .service-num { font-family: var(--font-display); font-size: 56px; color: rgba(255,215,0,0.12); line-height: 1; margin-bottom: 24px; }
+    .service-title { font-family: var(--font-condensed); font-size: 20px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
+    .service-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+    .services-cta { margin-top: 56px; text-align: center; }
+
+    /* ─── FINAL CTA ─── */
+    .cta-section { position: relative; padding: 160px 80px; background: var(--black); text-align: center; overflow: hidden; }
+    .cta-section::before { content: 'COLOSSEUM'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--font-display); font-size: clamp(80px, 14vw, 200px); letter-spacing: 0.08em; color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none; }
+    .cta-section .section-label { justify-content: center; }
+    .cta-section .section-label::before { display: none; }
+    .cta-section .section-label::after { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+    .cta-headline { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); letter-spacing: 0.04em; line-height: 0.95; margin-bottom: 40px; position: relative; }
+    .cta-headline span { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .work-section, .services-section { padding: 80px 40px; }
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-section { padding: 120px 40px; }
+    }
+    @media (max-width: 768px) {
+      .hero-content { padding: 0 24px; text-align: left; }
+      .hero-eyebrow { justify-content: flex-start; }
+      .hero-eyebrow::after { display: none; }
+      .hero-ctas { justify-content: flex-start; flex-wrap: wrap; }
+      .work-section, .services-section { padding: 64px 24px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .work-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .cta-section { padding: 80px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Colosseum">
+      <span class="nav-logo-text">COLOSSEUM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="index.html#services">Services</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline preload="metadata" poster="images/logo.png">
+        <source src="VIDEO_URL_HERE" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Calgary, Canada</div>
+      <h1 class="hero-headline">WE BUILD<br><span>LEGENDS.</span></h1>
+      <p class="hero-sub">Cinematic storytelling for sports,<br>brands, and the moments that define culture.</p>
+      <div class="hero-ctas">
+        <a href="portfolio.html" class="btn btn-gold">View Our Work</a>
+        <a href="contact.html" class="btn btn-outline">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT LOGOS -->
+  <section class="logos-section">
+    <p class="logos-label">Trusted by</p>
+    <div class="logos-track-wrap">
+      <div class="logos-track" id="logosTrack">
+        <!--
+          HOW TO ADD COMPANY LOGOS:
+          Replace each <span class="logo-item-text"> with an <img> tag:
+          <img src="images/logos/purevitalabs.png" alt="Pure Vita Labs" class="logo-item">
+
+          Save logo image files to: images/logos/
+          Recommended: white/light PNG with transparent background, ~200px wide
+          The CSS will auto-apply the grayscale+white filter and opacity.
+
+          Until you have logo files, the text fallbacks below will display.
+        -->
+        <img src="images/logos/purevitalabs.png" alt="Pure Vita Labs" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">PURE VITA LABS</span>
+
+        <img src="images/logos/endzn.png" alt="ENDZN Apparel" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">ENDZN APPAREL</span>
+
+        <img src="images/logos/rawsports.png" alt="RAW Sports" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">RAW SPORTS</span>
+
+        <img src="images/logos/arizonacardinals.png" alt="Arizona Cardinals" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">ARIZONA CARDINALS</span>
+
+        <img src="images/logos/qbmotion.png" alt="QB Motion" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">QB MOTION</span>
+
+        <img src="images/logos/calgarydinos.png" alt="Calgary Dinos" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">CALGARY DINOS</span>
+
+        <img src="images/logos/redbull.png" alt="Red Bull" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">RED BULL</span>
+
+        <img src="images/logos/cfl.png" alt="CFL" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">CFL</span>
+
+        <!-- Duplicate set for seamless loop -->
+        <img src="images/logos/purevitalabs.png" alt="Pure Vita Labs" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">PURE VITA LABS</span>
+
+        <img src="images/logos/endzn.png" alt="ENDZN Apparel" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">ENDZN APPAREL</span>
+
+        <img src="images/logos/rawsports.png" alt="RAW Sports" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">RAW SPORTS</span>
+
+        <img src="images/logos/arizonacardinals.png" alt="Arizona Cardinals" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">ARIZONA CARDINALS</span>
+
+        <img src="images/logos/qbmotion.png" alt="QB Motion" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">QB MOTION</span>
+
+        <img src="images/logos/calgarydinos.png" alt="Calgary Dinos" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">CALGARY DINOS</span>
+
+        <img src="images/logos/redbull.png" alt="Red Bull" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">RED BULL</span>
+
+        <img src="images/logos/cfl.png" alt="CFL" class="logo-item" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="logo-item-text" style="display:none">CFL</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section class="work-section">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Selected Work</div>
+        <h2 class="section-title">FEATURED<br>PROJECTS</h2>
+      </div>
+      <a href="portfolio.html" class="btn btn-outline">View All Work</a>
+    </div>
+
+    <div class="work-grid">
+      <a href="projects/pvl.html" class="work-card reveal">
+        <div class="work-card-img pvl-bg work-card-placeholder"><span class="card-icon">🏆</span></div>
+        <div class="work-card-overlay">
+          <div class="work-card-label">Brand Film</div>
+          <div class="work-card-title">THE CANADIAN WHEY</div>
+          <p class="work-card-desc">A cinematic hero commercial featuring six elite Canadian athletes for Pure Vita Labs.</p>
+          <span class="work-card-link">Learn More →</span>
+        </div>
+      </a>
+      <a href="projects/endzn.html" class="work-card reveal reveal-delay-1">
+        <div class="work-card-img endzn-bg work-card-placeholder"><span class="card-icon">🏈</span></div>
+        <div class="work-card-overlay">
+          <div class="work-card-label">Apparel Campaign</div>
+          <div class="work-card-title">DINOS × ENDZN</div>
+          <p class="work-card-desc">Fast, cinematic product showcase at McMahon Stadium with Calgary Dinos athletes.</p>
+          <span class="work-card-link">Learn More →</span>
+        </div>
+      </a>
+      <a href="projects/raw.html" class="work-card reveal reveal-delay-2">
+        <div class="work-card-img raw-bg work-card-placeholder"><span class="card-icon">🏟️</span></div>
+        <div class="work-card-overlay">
+          <div class="work-card-label">Campaign</div>
+          <div class="work-card-title">JUNIOR CARDINALS</div>
+          <p class="work-card-desc">195,000+ views. The first NFL franchise to invest directly in Canadian youth football.</p>
+          <span class="work-card-link">Learn More →</span>
+        </div>
+      </a>
+      <a href="projects/endzn2.html" class="work-card reveal">
+        <div class="work-card-img endzn2-bg work-card-placeholder"><span class="card-icon">🎮</span></div>
+        <div class="work-card-overlay">
+          <div class="work-card-label">Social Campaign</div>
+          <div class="work-card-title">CREATE YOUR PLAYER</div>
+          <p class="work-card-desc">A Black Friday promo starring Jalen Philpot styled as a Madden character builder.</p>
+          <span class="work-card-link">Learn More →</span>
+        </div>
+      </a>
+      <a href="projects/pvl2.html" class="work-card reveal reveal-delay-1">
+        <div class="work-card-img pvl2-bg work-card-placeholder"><span class="card-icon">💧</span></div>
+        <div class="work-card-overlay">
+          <div class="work-card-label">Brand Film</div>
+          <div class="work-card-title">THE 4X EXPERIMENT</div>
+          <p class="work-card-desc">A comedic science-lab concept with CFL's Gideon Agyei for Pro H2O hydration.</p>
+          <span class="work-card-link">Learn More →</span>
+        </div>
+      </a>
+      <a href="projects/qb.html" class="work-card reveal reveal-delay-2">
+        <div class="work-card-img qb-bg work-card-placeholder"><span class="card-icon">🎬</span></div>
+        <div class="work-card-overlay">
+          <div class="work-card-label">Course Production</div>
+          <div class="work-card-title">QB MOTION LAUNCH</div>
+          <p class="work-card-desc">Two-day clinic with Nathan Rourke and Trevor Harris turned into a sellable IP product.</p>
+          <span class="work-card-link">Learn More →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">OUR<br>SERVICES</h2>
+      </div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-title">Content Production</div>
+        <p class="service-desc">Full-scale cinematic production from concept to final cut. We handle scripting, directing, shooting, and editing to a championship standard.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <div class="service-title">Brand Development</div>
+        <p class="service-desc">We build creative strategies that give brands cultural relevance — the same approach that drives the world's most elite brands.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <div class="service-title">Social Media</div>
+        <p class="service-desc">Platform-native content built to stop the scroll. Native to the platforms, designed for the audiences that live there.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <div class="service-title">Photography</div>
+        <p class="service-desc">Editorial and commercial photography that delivers a full season of professional content in a single shoot day.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">05</div>
+        <div class="service-title">Videography</div>
+        <p class="service-desc">Cinematic video production for campaigns, brand films, athlete profiles, and event coverage at the highest level.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">06</div>
+        <div class="service-title">Event Coverage</div>
+        <p class="service-desc">Multi-camera event production capturing the energy and significance of your most important moments.</p>
+      </div>
+    </div>
+    <div class="services-cta reveal">
+      <a href="contact.html" class="btn btn-gold">Start a Project</a>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="section-label reveal">Ready to Work</div>
+    <h2 class="cta-headline reveal">LET'S BUILD SOMETHING<br><span>LEGENDARY.</span></h2>
+    <a href="contact.html" class="btn btn-gold reveal">Get In Touch</a>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="images/logo.png" alt="Colosseum" style="height:36px;">
+          <span class="nav-logo-text">COLOSSEUM</span>
+        </div>
+        <p>Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Colosseum Creative Agency. All rights reserved.</p>
+      <p>Calgary, Alberta, Canada</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

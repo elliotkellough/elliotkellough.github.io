@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Colosseum — Founded by Daniel Flanagan and Roan Reid, former University of Calgary Dinos athletes.">
+  <title>About — COLOSSEUM</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero { padding: 160px 80px 80px; background: var(--black); position: relative; overflow: hidden; }
+    .page-hero::after { content: 'ABOUT'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-size: 220px; color: rgba(255,255,255,0.025); pointer-events: none; line-height: 1; }
+    .page-hero-label { margin-bottom: 24px; }
+    .page-hero h1 { font-family: var(--font-display); font-size: clamp(56px, 8vw, 112px); letter-spacing: 0.04em; line-height: 0.9; max-width: 700px; }
+    .page-hero h1 span { color: var(--gold); }
+
+    .story-section { padding: 100px 80px; background: var(--dark); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .story-img-wrap { position: relative; }
+    .story-img { width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, #111 0%, #1f1f1f 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .story-img img { width: 100%; height: 100%; object-fit: cover; }
+    .story-img-placeholder { font-family: var(--font-display); font-size: 80px; color: rgba(255,215,0,0.15); }
+    .story-img-badge { position: absolute; bottom: -20px; right: -20px; background: var(--gold); color: var(--black); padding: 24px; font-family: var(--font-display); font-size: 13px; letter-spacing: 0.15em; text-align: center; line-height: 1.4; }
+    .story-img-badge strong { display: block; font-size: 32px; }
+    .story-content { padding-top: 16px; }
+    .story-content h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 56px); letter-spacing: 0.04em; line-height: 1; margin-bottom: 32px; }
+    .story-content h2 span { color: var(--gold); }
+    .story-content p { font-size: 16px; line-height: 1.85; color: var(--light-grey); margin-bottom: 20px; }
+    .story-quote { border-left: 2px solid var(--gold); padding: 20px 28px; margin: 36px 0; }
+    .story-quote p { font-family: var(--font-condensed); font-size: 20px; font-weight: 300; font-style: italic; color: var(--white); line-height: 1.5; margin: 0; }
+
+    .team-section { padding: 120px 80px; background: var(--dark); }
+    .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; margin-top: 64px; max-width: 900px; }
+    .team-card { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.06); overflow: hidden; transition: border-color 0.3s; }
+    .team-card:hover { border-color: rgba(255,215,0,0.3); }
+    .team-photo { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #111, #1a1a1a); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .team-photo-placeholder { font-size: 80px; opacity: 0.2; }
+    .team-photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+    .team-info { padding: 32px; }
+    .team-position { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .team-name { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.06em; margin-bottom: 16px; }
+    .team-bio { font-size: 14px; color: var(--grey); line-height: 1.7; }
+
+    .section-title { font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); letter-spacing: 0.04em; line-height: 0.95; }
+
+    @media (max-width: 1024px) {
+      .story-grid { grid-template-columns: 1fr; gap: 48px; }
+      .page-hero, .story-section, .team-section { padding: 80px 40px; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 24px 60px; }
+      .page-hero::after { font-size: 120px; }
+      .story-section, .team-section { padding: 64px 24px; }
+      .team-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .story-img-badge { right: 0; bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Colosseum">
+      <span class="nav-logo-text">COLOSSEUM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="index.html#services">Services</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="section-label page-hero-label">Our Story</div>
+    <h1>WE CAME FROM<br><span>INSIDE IT.</span></h1>
+  </section>
+
+  <section class="story-section">
+    <div class="story-grid">
+      <div class="story-img-wrap reveal">
+        <div class="story-img">
+          <!-- Replace with actual team photo: <img src="images/team.jpg" alt="Colosseum team"> -->
+          <span class="story-img-placeholder">C</span>
+        </div>
+        <div class="story-img-badge">
+          <strong>2025</strong>
+          FOUNDED
+        </div>
+      </div>
+      <div class="story-content reveal reveal-delay-1">
+        <h2>NOT OBSERVERS.<br><span>ATHLETES.</span></h2>
+        <div class="gold-line"></div>
+        <p>We didn't come to Canadian sports media from the outside. We came from inside it. And that changes everything about how we work, what we make, and what we're building toward.</p>
+        <p>Daniel and Roan met playing football at the University of Calgary. They were teammates on the Dinos, competed at the highest level of university football in Canada, and shared the same standard — the kind that gets built in locker rooms and on practice fields, not in classrooms.</p>
+        <p>After football, both stayed in business. Daniel went into marketing, spent time at Red Bull learning how world-class brands build cultural relevance, and came away convinced that Canadian sports deserved that same level of creative investment. Roan learned how people make decisions, how to listen, and how to close.</p>
+        <div class="story-quote">
+          <p>"Canadian sport is full of personalities, stories, and moments the rest of the world hasn't seen yet. We're here to change that."</p>
+        </div>
+        <p>Colosseum was founded in April 2025 with one belief: that the best content comes from people who actually understand the world they're filming. Not observers. Not outsiders. People who lived it.</p>
+        <p>In our first year we produced campaigns for NFL-affiliated programs, multi-athlete brand productions with credible names from across Canadian sport, and media day productions that gave programs a full season of professional content in a single shoot day. We're just getting started.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="section-label reveal">The Team</div>
+    <h2 class="section-title reveal">BUILT BY<br>ATHLETES.</h2>
+
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <!-- Replace with: <img src="images/daniel.jpg" alt="Daniel Flanagan"> -->
+          <span class="team-photo-placeholder">DF</span>
+          <div class="team-photo-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-position">Co-Founder · Creative Director</div>
+          <div class="team-name">DANIEL FLANAGAN</div>
+          <p class="team-bio">Leads all creative direction, strategy, and business development at Colosseum. Brings a championship standard to every brief — knows what it takes to perform when the stakes are high.</p>
+        </div>
+      </div>
+
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-photo">
+          <!-- Replace with: <img src="images/roan.jpg" alt="Roan Reid"> -->
+          <span class="team-photo-placeholder">RR</span>
+          <div class="team-photo-overlay"></div>
+        </div>
+        <div class="team-info">
+          <div class="team-position">Co-Founder · Head of Operations</div>
+          <div class="team-name">ROAN REID</div>
+          <p class="team-bio">Owns all operational and logistical execution at Colosseum: venue coordination, talent management, pre-production planning, and client communication. The reason every production runs on time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="images/logo.png" alt="Colosseum" style="height:36px;">
+          <span class="nav-logo-text">COLOSSEUM</span>
+        </div>
+        <p>Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Colosseum Creative Agency. All rights reserved.</p>
+      <p>Calgary, Alberta, Canada</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

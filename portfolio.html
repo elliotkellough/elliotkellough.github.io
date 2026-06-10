@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Colosseum Portfolio — Brand films, campaigns, and cinematic productions for Canadian sports and brands.">
+  <title>Portfolio — COLOSSEUM</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-hero {
+      padding: 160px 80px 80px;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::after {
+      content: 'WORK';
+      position: absolute;
+      right: -10px; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: 240px;
+      color: rgba(255,255,255,0.025);
+      pointer-events: none;
+      line-height: 1;
+    }
+    .page-hero h1 { font-family: var(--font-display); font-size: clamp(56px, 8vw, 112px); letter-spacing: 0.04em; line-height: 0.9; }
+    .page-hero h1 span { color: var(--gold); }
+
+    .projects-section { padding: 80px; background: var(--black); }
+
+    .project-entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 2px;
+      background: var(--dark);
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .project-entry:nth-child(even) { direction: rtl; }
+    .project-entry:nth-child(even) > * { direction: ltr; }
+
+    .project-visual { aspect-ratio: 16/10; position: relative; overflow: hidden; }
+    .project-visual-inner { width: 100%; height: 100%; transition: transform 0.7s ease; display: flex; align-items: center; justify-content: center; }
+    .project-entry:hover .project-visual-inner { transform: scale(1.04); }
+
+    /* Image/video inside project visual */
+    .project-visual-inner img,
+    .project-visual-inner video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+    }
+
+    .project-num { position: absolute; top: 24px; left: 24px; font-family: var(--font-display); font-size: 13px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); z-index: 2; }
+    .project-info { padding: 56px 64px; display: flex; flex-direction: column; justify-content: center; }
+    .project-client { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .project-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 44px); letter-spacing: 0.04em; line-height: 1; margin-bottom: 20px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tag { font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; }
+    .project-desc { font-size: 15px; color: var(--grey); line-height: 1.75; margin-bottom: 32px; }
+    .project-result { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: rgba(255,215,0,0.06); border-left: 2px solid var(--gold); margin-bottom: 32px; }
+    .result-num { font-family: var(--font-display); font-size: 28px; color: var(--gold); white-space: nowrap; }
+    .result-label { font-family: var(--font-condensed); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light-grey); }
+
+    .bg-pvl { background: linear-gradient(135deg, #0d0d00 0%, #1a1900 50%, #0a0a00 100%); }
+    .bg-endzn { background: linear-gradient(135deg, #000d1a 0%, #001a2a 50%, #000a12 100%); }
+    .bg-raw { background: linear-gradient(135deg, #001a0d 0%, #001a14 50%, #000d0a 100%); }
+    .bg-endzn2 { background: linear-gradient(135deg, #100014 0%, #1a001a 50%, #0a000d 100%); }
+    .bg-pvl2 { background: linear-gradient(135deg, #1a0a00 0%, #2a1000 50%, #120800 100%); }
+    .bg-qb { background: linear-gradient(135deg, #0a001a 0%, #14002a 50%, #060010 100%); }
+    .proj-icon { font-size: 80px; opacity: 0.18; }
+
+    @media (max-width: 1024px) {
+      .projects-section { padding: 64px 40px; }
+      .project-info { padding: 40px; }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 24px 60px; }
+      .page-hero::after { font-size: 120px; }
+      .projects-section { padding: 40px 0; }
+      .project-entry { grid-template-columns: 1fr; direction: ltr !important; }
+      .project-entry:nth-child(even) { direction: ltr; }
+      .project-info { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Colosseum">
+      <span class="nav-logo-text">COLOSSEUM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="index.html#services">Services</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="section-label" style="margin-bottom:24px;">Selected Work</div>
+    <h1>THE<br><span>PORTFOLIO.</span></h1>
+  </section>
+
+  <section class="projects-section">
+
+    <div class="project-entry reveal" id="pvl">
+      <div class="project-visual">
+        <div class="project-visual-inner bg-pvl">
+          <!--
+            ADD PROJECT IMAGE/VIDEO:
+            <img src="images/pvl-cover.jpg" alt="The Canadian Whey">
+            or
+            <video autoplay muted loop playsinline><source src="images/pvl-preview.mp4" type="video/mp4"></video>
+          -->
+          <span class="proj-icon">🏆</span>
+        </div>
+        <span class="project-num">01</span>
+      </div>
+      <div class="project-info">
+        <div class="project-client">Pure Vita Labs</div>
+        <div class="project-title">THE CANADIAN WHEY</div>
+        <div class="project-tags">
+          <span class="tag">Brand Film</span>
+          <span class="tag">Cinematic</span>
+          <span class="tag">Multi-Athlete</span>
+        </div>
+        <p class="project-desc">A cinematic hero commercial built around a single idea: what actually makes a Canadian athlete. Six elite athletes, five separate shoots, seven distinct locations — cut together as one unified film for the launch of Canada's first fully Canadian-made protein.</p>
+        <a href="projects/pvl.html" class="btn btn-outline">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="project-entry reveal" id="endzn">
+      <div class="project-visual">
+        <div class="project-visual-inner bg-endzn">
+          <!--
+            ADD PROJECT IMAGE/VIDEO:
+            <img src="images/endzn-cover.jpg" alt="Dinos x ENDZN">
+          -->
+          <span class="proj-icon">🏈</span>
+        </div>
+        <span class="project-num">02</span>
+      </div>
+      <div class="project-info">
+        <div class="project-client">ENDZN Apparel</div>
+        <div class="project-title">DINOS × ENDZN</div>
+        <div class="project-tags">
+          <span class="tag">Apparel</span>
+          <span class="tag">Sports</span>
+          <span class="tag">McMahon Stadium</span>
+        </div>
+        <p class="project-desc">Fast, cinematic, built to look elite. A full lineup of Calgary Dinos football players shot at McMahon Stadium — hyper-zoom reveals, match cuts across the field, slow-motion catches, all timed to the beat.</p>
+        <a href="projects/endzn.html" class="btn btn-outline">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="project-entry reveal" id="raw">
+      <div class="project-visual">
+        <div class="project-visual-inner bg-raw">
+          <!--
+            ADD PROJECT IMAGE/VIDEO:
+            <img src="images/raw-cover.jpg" alt="Junior Cardinals">
+          -->
+          <span class="proj-icon">🏟️</span>
+        </div>
+        <span class="project-num">03</span>
+      </div>
+      <div class="project-info">
+        <div class="project-client">RAW Sports × Arizona Cardinals</div>
+        <div class="project-title">JUNIOR CARDINALS FLAG LEAGUE</div>
+        <div class="project-tags">
+          <span class="tag">NFL Partnership</span>
+          <span class="tag">Campaign</span>
+          <span class="tag">Youth Sports</span>
+        </div>
+        <p class="project-desc">The first time an NFL franchise invested directly in a Canadian youth football league. We made the campaign that launched it. Filmed in Arizona with the Cardinals cheerleaders and mascot Big Red.</p>
+        <div class="project-result">
+          <div class="result-num">195K+</div>
+          <div class="result-label">Views on launch campaign</div>
+        </div>
+        <a href="projects/raw.html" class="btn btn-outline">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="project-entry reveal" id="endzn2">
+      <div class="project-visual">
+        <div class="project-visual-inner bg-endzn2">
+          <!--
+            ADD PROJECT IMAGE/VIDEO:
+            <img src="images/endzn2-cover.jpg" alt="Create Your Player">
+          -->
+          <span class="proj-icon">🎮</span>
+        </div>
+        <span class="project-num">04</span>
+      </div>
+      <div class="project-info">
+        <div class="project-client">ENDZN Apparel × Jalen Philpot</div>
+        <div class="project-title">CREATE YOUR PLAYER</div>
+        <div class="project-tags">
+          <span class="tag">Social Campaign</span>
+          <span class="tag">Black Friday</span>
+          <span class="tag">CFL Athlete</span>
+        </div>
+        <p class="project-desc">A Black Friday promo built around a video-game concept the entire target demographic recognizes instantly: "Create Your Player," styled after the Madden character-customization screen. Starring Jalen Philpot (WR, Calgary Stampeders).</p>
+        <a href="projects/endzn2.html" class="btn btn-outline">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="project-entry reveal" id="pvl2">
+      <div class="project-visual">
+        <div class="project-visual-inner bg-pvl2">
+          <!--
+            ADD PROJECT IMAGE/VIDEO:
+            <img src="images/pvl2-cover.jpg" alt="The 4X Experiment">
+          -->
+          <span class="proj-icon">🧪</span>
+        </div>
+        <span class="project-num">05</span>
+      </div>
+      <div class="project-info">
+        <div class="project-client">Pure Vita Labs</div>
+        <div class="project-title">THE 4X EXPERIMENT</div>
+        <div class="project-tags">
+          <span class="tag">Brand Film</span>
+          <span class="tag">Comedy</span>
+          <span class="tag">Pro H2O</span>
+        </div>
+        <p class="project-desc">A stylized science-lab world built around a single ownable device — "4X" — fronted by Dr. Gid, played by Gideon Agyei (DB, Saskatchewan Roughriders). Entertainment does the heavy lifting up front, then converts attention into a product message people retain.</p>
+        <a href="projects/pvl2.html" class="btn btn-outline">Learn More →</a>
+      </div>
+    </div>
+
+    <div class="project-entry reveal" id="qb">
+      <div class="project-visual">
+        <div class="project-visual-inner bg-qb">
+          <!--
+            ADD PROJECT IMAGE/VIDEO:
+            <img src="images/qb-cover.jpg" alt="QB Motion Launch">
+          -->
+          <span class="proj-icon">🎬</span>
+        </div>
+        <span class="project-num">06</span>
+      </div>
+      <div class="project-info">
+        <div class="project-client">QB Motion</div>
+        <div class="project-title">THE LAUNCH COURSE</div>
+        <div class="project-tags">
+          <span class="tag">Course Production</span>
+          <span class="tag">Sellable IP</span>
+          <span class="tag">Elite Coaching</span>
+        </div>
+        <p class="project-desc">Two-day quarterback clinic with Nathan Rourke and Trevor Harris captured and turned into a sellable product. A module-based coaching program giving coaches and quarterbacks who couldn't attend full access to Rob Williams' system.</p>
+        <a href="projects/qb.html" class="btn btn-outline">Learn More →</a>
+      </div>
+    </div>
+
+  </section>
+
+  <section style="padding:120px 80px; background:var(--dark); text-align:center; position:relative; overflow:hidden;">
+    <div class="section-label reveal" style="justify-content:center;"><span style="width:0"></span>Next Step</div>
+    <h2 class="section-title reveal" style="margin:0 auto 40px; max-width:600px;">YOUR PROJECT<br>COULD BE <span style="color:var(--gold)">NEXT.</span></h2>
+    <a href="contact.html" class="btn btn-gold reveal">Start a Conversation</a>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="images/logo.png" alt="Colosseum" style="height:36px;">
+          <span class="nav-logo-text">COLOSSEUM</span>
+        </div>
+        <p>Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Colosseum Creative Agency. All rights reserved.</p>
+      <p>Calgary, Alberta, Canada</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

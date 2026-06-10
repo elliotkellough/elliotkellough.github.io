@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUNIOR CARDINALS FLAG LEAGUE — COLOSSEUM</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .project-hero { position: relative; width: 100%; height: 80vh; min-height: 500px; background: var(--black); overflow: hidden; display: flex; align-items: flex-end; }
+    .project-hero-visual { position: absolute; inset: 0; background: linear-gradient(135deg, #001a0d, #001a14); display: flex; align-items: center; justify-content: center; }
+    .project-hero-visual img, .project-hero-visual video { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+    .project-hero-icon { font-size: 160px; opacity: 0.1; position: relative; z-index: 1; }
+    .project-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 60%); }
+    .project-hero-content { position: relative; z-index: 2; padding: 0 80px 64px; width: 100%; }
+    .project-hero-num { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .project-hero-client { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .project-hero-title { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); letter-spacing: 0.03em; line-height: 0.9; max-width: 900px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .tag { font-family: var(--font-condensed); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); border: 1px solid rgba(255,255,255,0.15); padding: 6px 14px; }
+
+    .project-body { max-width: 1200px; margin: 0 auto; padding: 80px; }
+    .project-intro { font-family: var(--font-condensed); font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; color: var(--white); line-height: 1.5; margin-bottom: 56px; border-left: 3px solid var(--gold); padding-left: 32px; }
+    .project-copy { font-size: 16px; color: var(--light-grey); line-height: 1.9; margin-bottom: 40px; }
+    .project-copy p { margin-bottom: 24px; }
+
+    .project-result-bar { display: flex; flex-wrap: wrap; gap: 2px; margin: 56px 0; }
+    .result-block { background: var(--dark); padding: 40px 48px; flex: 1; min-width: 180px; }
+    .result-block-num { font-family: var(--font-display); font-size: 56px; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+    .result-block-label { font-family: var(--font-condensed); font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+
+    /* MEDIA GALLERY */
+    .gallery-section { background: var(--dark); padding: 80px; }
+    .gallery-title { font-family: var(--font-display); font-size: 36px; letter-spacing: 0.06em; margin-bottom: 48px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .gallery-item { aspect-ratio: 16/10; background: rgba(255,255,255,0.04); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
+    .gallery-item img, .gallery-item video { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item-placeholder { font-size: 40px; opacity: 0.15; }
+    .gallery-item-label { position: absolute; bottom: 12px; left: 16px; font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+    /* EMBED VIDEO */
+    .video-section { padding: 80px; background: var(--black); }
+    .video-embed-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: var(--dark); overflow: hidden; }
+    .video-embed-wrap iframe, .video-embed-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .video-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 16px; }
+    .video-placeholder-icon { font-size: 64px; opacity: 0.15; }
+    .video-placeholder-text { font-family: var(--font-condensed); font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+
+    .project-nav { padding: 64px 80px; background: var(--dark); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+    .project-nav a { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .project-nav a:hover { color: var(--gold); }
+
+    @media (max-width: 1024px) { .project-body, .gallery-section, .video-section { padding: 64px 40px; } .project-hero-content { padding: 0 40px 48px; } .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .project-hero-content { padding: 0 24px 40px; } .project-body, .gallery-section, .video-section { padding: 48px 24px; } .gallery-grid { grid-template-columns: 1fr; } .project-nav { padding: 40px 24px; flex-direction: column; gap: 24px; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/logo.png" alt="Colosseum">
+      <span class="nav-logo-text">COLOSSEUM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../portfolio.html" class="active">Portfolio</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../portfolio.html">Portfolio</a>
+    <a href="../index.html#services">Services</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="project-hero">
+    <div class="project-hero-visual">
+      <!--
+        ADD HERO IMAGE OR VIDEO:
+        <img src="../images/raw-hero.jpg" alt="JUNIOR CARDINALS FLAG LEAGUE">
+        or
+        <video autoplay muted loop playsinline><source src="../images/raw-hero.mp4" type="video/mp4"></video>
+      -->
+      <span class="project-hero-icon">🏟️</span>
+    </div>
+    <div class="project-hero-overlay"></div>
+    <div class="project-hero-content">
+      <div class="project-hero-num">03</div>
+      <div class="project-hero-client">RAW Sports × Arizona Cardinals</div>
+      <h1 class="project-hero-title">JUNIOR CARDINALS FLAG LEAGUE</h1>
+      <div class="project-tags"><span class="tag">NFL Partnership</span><span class="tag">Campaign</span><span class="tag">Youth Sports</span></div>
+    </div>
+  </section>
+
+  <!-- BODY COPY -->
+  <div class="project-body">
+    <p class="project-intro">The first time an NFL franchise invested directly in a Canadian youth football league. We made the campaign that launched it.</p>
+    <div class="project-copy"><p>Filmed in Arizona with the Cardinals cheerleaders and mascot Big Red, the campaign drove over 195,000 views and more than 700 players registered for the inaugural season.</p><p>Full creative from concept to scripting to directing. The brief was simple: make Canadian kids feel like they're part of the NFL. The execution required us to bridge two countries, two organizations, and a level of production energy that matched the scale of what this partnership represented.</p><p>The campaign ran across social platforms and became the foundational piece of content for an entire league's identity. It proved that professional-level creative can move the needle on grassroots sports in a way nothing else can.</p></div>
+
+    <!-- RESULT STATS — edit or remove as needed -->
+    <div class="project-result-bar">
+      <div class=result-block reveal><div class=result-block-num>195K+</div><div class=result-block-label>Views on launch campaign</div></div>
+    </div>
+  </div>
+
+  <!-- EMBED VIDEO SECTION -->
+  <section class="video-section">
+    <div class="section-label" style="margin-bottom:32px;">Watch the Film</div>
+    <div class="video-embed-wrap">
+      <!--
+        OPTION A — YouTube/Vimeo embed:
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+
+        OPTION B — Self-hosted video:
+        <video controls poster="../images/raw-poster.jpg">
+          <source src="../images/raw.mp4" type="video/mp4">
+        </video>
+      -->
+      <div class="video-placeholder">
+        <span class="video-placeholder-icon">▶</span>
+        <span class="video-placeholder-text">Add video embed or file above</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section">
+    <div class="section-label" style="margin-bottom:16px;">Gallery</div>
+    <h2 class="gallery-title">BEHIND THE WORK</h2>
+    <div class="gallery-grid">
+      <!--
+        ADD IMAGES:
+        <div class="gallery-item">
+          <img src="../images/raw-1.jpg" alt="Behind the scenes">
+        </div>
+
+        Repeat for each photo. Recommended: 6–9 images.
+        Until images are added, placeholders display below.
+      -->
+      <div class="gallery-item reveal"><span class="gallery-item-placeholder">🏟️</span><span class="gallery-item-label">Add image</span></div>
+      <div class="gallery-item reveal reveal-delay-1"><span class="gallery-item-placeholder">🏟️</span><span class="gallery-item-label">Add image</span></div>
+      <div class="gallery-item reveal reveal-delay-2"><span class="gallery-item-placeholder">🏟️</span><span class="gallery-item-label">Add image</span></div>
+      <div class="gallery-item reveal"><span class="gallery-item-placeholder">🏟️</span><span class="gallery-item-label">Add image</span></div>
+      <div class="gallery-item reveal reveal-delay-1"><span class="gallery-item-placeholder">🏟️</span><span class="gallery-item-label">Add image</span></div>
+      <div class="gallery-item reveal reveal-delay-2"><span class="gallery-item-placeholder">🏟️</span><span class="gallery-item-label">Add image</span></div>
+    </div>
+  </section>
+
+  <!-- PROJECT NAV -->
+  <div class="project-nav">
+    <a href="../portfolio.html">← All Projects</a>
+    <a href="../contact.html" class="btn btn-gold">Start a Project</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="../images/logo.png" alt="Colosseum" style="height:36px;">
+          <span class="nav-logo-text">COLOSSEUM</span>
+        </div>
+        <p>Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../portfolio.html">Portfolio</a></li>
+          <li><a href="../index.html#services">Services</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Colosseum Creative Agency. All rights reserved.</p>
+      <p>Calgary, Alberta, Canada</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
