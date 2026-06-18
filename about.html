@@ -28,30 +28,124 @@
     .story-quote { border-left: 2px solid var(--gold); padding: 20px 28px; margin: 36px 0; }
     .story-quote p { font-family: var(--font-condensed); font-size: 20px; font-weight: 300; font-style: italic; color: var(--white); line-height: 1.5; margin: 0; }
 
+    /* MISSION */
+    .mission-section { padding: 140px 80px; background: var(--black); position: relative; overflow: hidden; text-align: center; }
+    .mission-section::before {
+      content: 'MISSION';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(80px, 16vw, 220px);
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.025);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .mission-section .section-label { justify-content: center; margin: 0 auto 24px; }
+    .mission-section .section-label::before { display: none; }
+    .mission-section .section-label::after { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+    .mission-headline {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 84px);
+      letter-spacing: 0.03em;
+      line-height: 1.05;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .mission-headline span { color: var(--gold); }
+    .mission-copy {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 17px;
+      line-height: 1.9;
+      color: var(--light-grey);
+      position: relative;
+    }
+    .mission-copy p { margin-bottom: 24px; }
+    .mission-copy p:last-child { margin-bottom: 0; }
+
+    /* TEAM — Ajax-style grid of headshots */
     .team-section { padding: 120px 80px; background: var(--dark); }
-    .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; margin-top: 64px; max-width: 900px; }
-    .team-card { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.06); overflow: hidden; transition: border-color 0.3s; }
-    .team-card:hover { border-color: rgba(255,215,0,0.3); }
-    .team-photo { width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, #111, #1a1a1a); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 64px;
+    }
+    .team-card { text-align: left; }
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #111, #1a1a1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: border-color 0.3s;
+    }
+    .team-card:hover .team-photo { border-color: rgba(255,215,0,0.3); }
     .team-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .team-photo-placeholder { font-size: 80px; opacity: 0.2; }
-    .team-photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
-    .team-info { padding: 32px; }
-    .team-position { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-    .team-name { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.06em; margin-bottom: 16px; }
-    .team-bio { font-size: 14px; color: var(--grey); line-height: 1.7; }
+    .team-photo-placeholder { font-size: 56px; opacity: 0.2; }
+    .team-name { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .team-position { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+
+    /* WHAT WE BELIEVE IN */
+    .values-section { padding: 120px 80px; background: var(--black); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+    .value-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .value-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .value-card:hover::before { transform: scaleX(1); }
+    .value-card:hover { background: rgba(255,215,0,0.03); }
+    .value-title {
+      font-family: var(--font-condensed);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .value-desc { font-size: 14px; color: var(--grey); line-height: 1.75; }
 
     .section-title { font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); letter-spacing: 0.04em; line-height: 0.95; }
 
     @media (max-width: 1024px) {
       .story-grid { grid-template-columns: 1fr; gap: 48px; }
-      .page-hero, .story-section, .team-section { padding: 80px 40px; }
+      .page-hero, .story-section, .team-section, .values-section, .mission-section { padding: 80px 40px; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .page-hero { padding: 120px 24px 60px; }
       .page-hero::after { font-size: 120px; }
-      .story-section, .team-section { padding: 64px 24px; }
-      .team-grid { grid-template-columns: 1fr; max-width: 100%; }
+      .story-section, .team-section, .values-section, .mission-section { padding: 64px 24px; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
       .story-img-badge { right: 0; bottom: 0; }
     }
   </style>
@@ -115,6 +209,17 @@
     </div>
   </section>
 
+  <!-- OUR MISSION -->
+  <section class="mission-section">
+    <div class="section-label reveal">Our Mission</div>
+    <h2 class="mission-headline reveal">TO BUILD THE STANDARD<br>FOR <span>CANADIAN SPORTS MEDIA.</span></h2>
+    <div class="mission-copy reveal reveal-delay-1">
+      <p>We exist to give Canadian sport the creative investment it deserves. Not generic highlight reels. Not stock footage with a logo slapped on top. Real, cinematic storytelling built by people who understand what's actually happening on the field.</p>
+      <p>Every project starts with the same question: what does this team, athlete, or brand actually deserve to look like? Then we build toward that standard, no matter what it takes to get there.</p>
+    </div>
+  </section>
+
+  <!-- TEAM -->
   <section class="team-section">
     <div class="section-label reveal">The Team</div>
     <h2 class="section-title reveal">BUILT BY<br>ATHLETES.</h2>
@@ -124,26 +229,51 @@
         <div class="team-photo">
           <!-- Replace with: <img src="images/daniel.jpg" alt="Daniel Flanagan"> -->
           <span class="team-photo-placeholder">DF</span>
-          <div class="team-photo-overlay"></div>
         </div>
-        <div class="team-info">
-          <div class="team-position">Co-Founder · Creative Director</div>
-          <div class="team-name">DANIEL FLANAGAN</div>
-          <p class="team-bio">Leads all creative direction, strategy, and business development at Colosseum. Brings a championship standard to every brief — knows what it takes to perform when the stakes are high.</p>
-        </div>
+        <div class="team-name">DANIEL FLANAGAN</div>
+        <div class="team-position">Co-Founder · Creative Director</div>
       </div>
 
       <div class="team-card reveal reveal-delay-1">
         <div class="team-photo">
           <!-- Replace with: <img src="images/roan.jpg" alt="Roan Reid"> -->
           <span class="team-photo-placeholder">RR</span>
-          <div class="team-photo-overlay"></div>
         </div>
-        <div class="team-info">
-          <div class="team-position">Co-Founder · Head of Operations</div>
-          <div class="team-name">ROAN REID</div>
-          <p class="team-bio">Owns all operational and logistical execution at Colosseum: venue coordination, talent management, pre-production planning, and client communication. The reason every production runs on time.</p>
-        </div>
+        <div class="team-name">ROAN REID</div>
+        <div class="team-position">Co-Founder · Head of Operations</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE BELIEVE IN -->
+  <section class="values-section">
+    <div class="section-label reveal">Our Values</div>
+    <h2 class="section-title reveal">WHAT WE<br>BELIEVE IN.</h2>
+
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-title">Standard</div>
+        <p class="value-desc">We bring a championship standard to every brief. Good enough isn't acceptable. If it doesn't meet the bar we'd hold ourselves to as athletes, it doesn't go out.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-title">Authenticity</div>
+        <p class="value-desc">We came from inside the world we film. That means we know what's real and what isn't — and we only make the real thing.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-title">Craft</div>
+        <p class="value-desc">Every frame is a decision. We sweat the details other agencies skip, because that's what separates content from cinema.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-title">Reliability</div>
+        <p class="value-desc">We run on time, every time. Clients trust us with their biggest moments because we treat every shoot day like it's the only one that matters.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-title">Ambition</div>
+        <p class="value-desc">We're building something that didn't exist before in Canadian sports media. That requires taking swings other agencies won't.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-title">Trust</div>
+        <p class="value-desc">What we say is what we deliver. Our reputation is built one project at a time, and we protect it like it's the only thing we have.</p>
       </div>
     </div>
   </section>
@@ -170,13 +300,13 @@
       <div class="footer-social">
         <h4>Follow Us</h4>
         <div class="social-links">
-          <a href="https://www.instagram.com/colosseumsports_" class="social-link" aria-label="Instagram">
+          <a href="#" class="social-link" aria-label="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
           </a>
           <a href="#" class="social-link" aria-label="TikTok">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.74a4.85 4.85 0 01-1.01-.05z"/></svg>
           </a>
-          <a href="https://www.linkedin.com/company/colosseum-marketing-incorp" class="social-link" aria-label="LinkedIn">
+          <a href="#" class="social-link" aria-label="LinkedIn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
         </div>
