@@ -94,44 +94,53 @@
     .team-name { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.05em; margin-bottom: 6px; }
     .team-position { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
 
-    /* WHAT WE BELIEVE IN */
-    .values-section { padding: 120px 80px; background: var(--black); }
+    /* CORE VALUES */
+    .values-section { padding: 120px 80px; background: var(--black); position: relative; overflow: hidden; }
+    .values-section::before {
+      content: '02';
+      position: absolute;
+      top: 60px; right: 80px;
+      font-family: var(--font-display);
+      font-size: clamp(140px, 20vw, 320px);
+      color: rgba(255,255,255,0.025);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .values-headline {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 72px);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .values-intro {
+      font-size: 17px;
+      color: var(--light-grey);
+      line-height: 1.7;
+      max-width: 760px;
+      margin-bottom: 72px;
+      position: relative;
+    }
     .values-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      margin-top: 64px;
-    }
-    .value-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 44px 36px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 56px 64px;
       position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
     }
-    .value-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
-    }
-    .value-card:hover::before { transform: scaleX(1); }
-    .value-card:hover { background: rgba(255,215,0,0.03); }
+    .value-item { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 32px; }
+    .value-heading { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; }
+    .value-num { font-family: var(--font-display); font-size: 20px; color: var(--gold); flex-shrink: 0; }
     .value-title {
       font-family: var(--font-condensed);
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 18px;
+      color: var(--white);
+      line-height: 1.3;
     }
-    .value-desc { font-size: 14px; color: var(--grey); line-height: 1.75; }
+    .value-desc { font-size: 15px; color: var(--grey); line-height: 1.75; }
 
     .section-title { font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); letter-spacing: 0.04em; line-height: 0.95; }
 
@@ -139,7 +148,7 @@
       .story-grid { grid-template-columns: 1fr; gap: 48px; }
       .page-hero, .story-section, .team-section, .values-section, .mission-section { padding: 80px 40px; }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
-      .values-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 768px) {
       .page-hero { padding: 120px 24px 60px; }
@@ -147,6 +156,7 @@
       .story-section, .team-section, .values-section, .mission-section { padding: 64px 24px; }
       .team-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
       .story-img-badge { right: 0; bottom: 0; }
+      .values-section::before { font-size: 140px; top: 20px; right: 20px; }
     }
   </style>
 </head>
@@ -242,35 +252,75 @@
     </div>
   </section>
 
-  <!-- WHAT WE BELIEVE IN -->
+  <!-- CORE VALUES -->
   <section class="values-section">
-    <div class="section-label reveal">Our Values</div>
-    <h2 class="section-title reveal">WHAT WE<br>BELIEVE IN.</h2>
+    <div class="section-label reveal">02 · Core Values</div>
+    <h2 class="values-headline reveal">THE STANDARD<br>DOES NOT MOVE.</h2>
+    <p class="values-intro reveal reveal-delay-1">Eight values, shared like a locker room code. Every person who carries the Colosseum name carries these.</p>
 
     <div class="values-grid">
-      <div class="value-card reveal">
-        <div class="value-title">Standard</div>
-        <p class="value-desc">We bring a championship standard to every brief. Good enough isn't acceptable. If it doesn't meet the bar we'd hold ourselves to as athletes, it doesn't go out.</p>
+      <div class="value-item reveal">
+        <div class="value-heading">
+          <span class="value-num">01</span>
+          <span class="value-title">The Athlete Standard</span>
+        </div>
+        <p class="value-desc">This business runs like a championship team. Everyone earns their spot, everyone owns their role, and everyone is expected to perform at the highest level every single day. The best players play.</p>
       </div>
-      <div class="value-card reveal reveal-delay-1">
-        <div class="value-title">Authenticity</div>
-        <p class="value-desc">We came from inside the world we film. That means we know what's real and what isn't — and we only make the real thing.</p>
+
+      <div class="value-item reveal reveal-delay-1">
+        <div class="value-heading">
+          <span class="value-num">02</span>
+          <span class="value-title">Win Together, Lose Together</span>
+        </div>
+        <p class="value-desc">We are one team. We own the wins and the losses together, hold each other accountable, and expect the best out of each other. Iron sharpens iron.</p>
       </div>
-      <div class="value-card reveal reveal-delay-2">
-        <div class="value-title">Craft</div>
-        <p class="value-desc">Every frame is a decision. We sweat the details other agencies skip, because that's what separates content from cinema.</p>
+
+      <div class="value-item reveal">
+        <div class="value-heading">
+          <span class="value-num">03</span>
+          <span class="value-title">Do Your Job at the Highest Level</span>
+        </div>
+        <p class="value-desc">Every person on this team has a role. Own it completely. The details matter, the deadlines matter, the quality of your work matters. If your teammate needs help, you help them.</p>
       </div>
-      <div class="value-card reveal">
-        <div class="value-title">Reliability</div>
-        <p class="value-desc">We run on time, every time. Clients trust us with their biggest moments because we treat every shoot day like it's the only one that matters.</p>
+
+      <div class="value-item reveal reveal-delay-1">
+        <div class="value-heading">
+          <span class="value-num">04</span>
+          <span class="value-title">Craft First</span>
+        </div>
+        <p class="value-desc">The standard does not move. Every piece of content, every client interaction, every deliverable that carries the Colosseum name is held to the same bar. Worth watching, worth sharing, worth being proud of.</p>
       </div>
-      <div class="value-card reveal reveal-delay-1">
-        <div class="value-title">Ambition</div>
-        <p class="value-desc">We're building something that didn't exist before in Canadian sports media. That requires taking swings other agencies won't.</p>
+
+      <div class="value-item reveal">
+        <div class="value-heading">
+          <span class="value-num">05</span>
+          <span class="value-title">Personality with Respect</span>
+        </div>
+        <p class="value-desc">Colosseum is not a buttoned up company and we never try to be. We let our personalities show and bring energy to every interaction. What never changes is the respect we give to the people in the room. Every client, every athlete, every collaborator gets a positive experience from us. Full stop. We read the room. If someone is direct and commanding, we match that energy. If they are warm and relaxed, we meet them there. We do not complain. Nobody likes working with a complainer.</p>
       </div>
-      <div class="value-card reveal reveal-delay-2">
-        <div class="value-title">Trust</div>
-        <p class="value-desc">What we say is what we deliver. Our reputation is built one project at a time, and we protect it like it's the only thing we have.</p>
+
+      <div class="value-item reveal reveal-delay-1">
+        <div class="value-heading">
+          <span class="value-num">06</span>
+          <span class="value-title">We Want to Be the Best</span>
+        </div>
+        <p class="value-desc">Our company culture is competitive and driven to be the best sports media company in the country. We celebrate that ambition internally, recruit people who share it, and measure everything against the highest possible standard.</p>
+      </div>
+
+      <div class="value-item reveal">
+        <div class="value-heading">
+          <span class="value-num">07</span>
+          <span class="value-title">Be the Most Prepared Person in the Room</span>
+        </div>
+        <p class="value-desc">Every meeting, every call, every shoot, every conversation where we are working with someone else: come prepared. Know the objective. Know the material. Know the people in the room. Come with an agenda, come with questions, and come with something worth contributing. This applies to client meetings, internal team meetings, creative sessions, and everything in between. Preparation is how we show respect for everyone's time and how we earn the right to lead the conversation.</p>
+      </div>
+
+      <div class="value-item reveal reveal-delay-1">
+        <div class="value-heading">
+          <span class="value-num">08</span>
+          <span class="value-title">One Step Above</span>
+        </div>
+        <p class="value-desc">In every interaction and deliverable we create for a client, our goal is to go one step beyond their expectation. The difference between a client who comes back and one who doesn't is almost always found in the small things that were better than anticipated. That is the standard we hold ourselves to on every project.</p>
       </div>
     </div>
   </section>
