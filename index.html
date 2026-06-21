@@ -135,6 +135,8 @@
     .work-card { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; background: var(--dark); }
     .work-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); }
     .work-card:hover .work-card-img { transform: scale(1.06); }
+    .work-card-video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .work-card:hover .work-card-video { transform: scale(1.06); }
     .work-card-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.1) 60%);
@@ -322,7 +324,7 @@
 
     <div class="work-grid">
       <a href="projects/pvl.html" class="work-card reveal">
-        <div class="work-card-img pvl-bg work-card-placeholder"><span class="card-icon">🏆</span></div>
+        <video class="work-card-video" autoplay muted loop playsinline><source src="images/pvl-preview.mp4" type="video/mp4"></video>
         <div class="work-card-overlay">
           <div class="work-card-label">Brand Film</div>
           <div class="work-card-title">THE CANADIAN WHEY</div>
@@ -331,7 +333,7 @@
         </div>
       </a>
       <a href="projects/endzn.html" class="work-card reveal reveal-delay-1">
-        <div class="work-card-img endzn-bg work-card-placeholder"><span class="card-icon">🏈</span></div>
+        <video class="work-card-video" autoplay muted loop playsinline><source src="images/endzn-preview.mp4" type="video/mp4"></video>
         <div class="work-card-overlay">
           <div class="work-card-label">Apparel Campaign</div>
           <div class="work-card-title">DINOS × ENDZN</div>
@@ -340,7 +342,7 @@
         </div>
       </a>
       <a href="projects/raw.html" class="work-card reveal reveal-delay-2">
-        <div class="work-card-img raw-bg work-card-placeholder"><span class="card-icon">🏟️</span></div>
+        <video class="work-card-video" autoplay muted loop playsinline><source src="images/raw-preview.mp4" type="video/mp4"></video>
         <div class="work-card-overlay">
           <div class="work-card-label">Campaign</div>
           <div class="work-card-title">JUNIOR CARDINALS</div>
@@ -349,7 +351,7 @@
         </div>
       </a>
       <a href="projects/endzn2.html" class="work-card reveal">
-        <div class="work-card-img endzn2-bg work-card-placeholder"><span class="card-icon">🎮</span></div>
+        <video class="work-card-video" autoplay muted loop playsinline><source src="images/endzn2-preview.mp4" type="video/mp4"></video>
         <div class="work-card-overlay">
           <div class="work-card-label">Social Campaign</div>
           <div class="work-card-title">CREATE YOUR PLAYER</div>
@@ -358,7 +360,7 @@
         </div>
       </a>
       <a href="projects/pvl2.html" class="work-card reveal reveal-delay-1">
-        <div class="work-card-img pvl2-bg work-card-placeholder"><span class="card-icon">💧</span></div>
+        <video class="work-card-video" autoplay muted loop playsinline><source src="images/pvl2-preview.mp4" type="video/mp4"></video>
         <div class="work-card-overlay">
           <div class="work-card-label">Brand Film</div>
           <div class="work-card-title">THE 4X EXPERIMENT</div>
@@ -367,7 +369,7 @@
         </div>
       </a>
       <a href="projects/qb.html" class="work-card reveal reveal-delay-2">
-        <div class="work-card-img qb-bg work-card-placeholder"><span class="card-icon">🎬</span></div>
+        <video class="work-card-video" autoplay muted loop playsinline><source src="images/qb-preview.mp4" type="video/mp4"></video>
         <div class="work-card-overlay">
           <div class="work-card-label">Course Production</div>
           <div class="work-card-title">QB MOTION LAUNCH</div>
