@@ -40,17 +40,24 @@
     /* EMBED VIDEO */
     .video-section { padding: 80px; background: var(--black); }
     .video-embed-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: var(--dark); overflow: hidden; }
+    .video-embed-wrap.vertical { aspect-ratio: 9/16; max-width: 400px; margin: 0 auto; }
     .video-embed-wrap iframe, .video-embed-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
     .video-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 16px; }
     .video-placeholder-icon { font-size: 64px; opacity: 0.15; }
     .video-placeholder-text { font-family: var(--font-condensed); font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+
+    /* SIDE-BY-SIDE VIDEO ROW */
+    .video-row { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+    .video-row .video-embed-wrap.vertical { margin: 0; flex: 0 1 360px; }
+    .video-row-label { text-align: center; font-family: var(--font-condensed); font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); margin-top: 16px; }
+    .video-row-item { display: flex; flex-direction: column; align-items: center; }
 
     .project-nav { padding: 64px 80px; background: var(--dark); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
     .project-nav a { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
     .project-nav a:hover { color: var(--gold); }
 
     @media (max-width: 1024px) { .project-body, .gallery-section, .video-section { padding: 64px 40px; } .project-hero-content { padding: 0 40px 48px; } .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 768px) { .project-hero-content { padding: 0 24px 40px; } .project-body, .gallery-section, .video-section { padding: 48px 24px; } .gallery-grid { grid-template-columns: 1fr; } .project-nav { padding: 40px 24px; flex-direction: column; gap: 24px; } }
+    @media (max-width: 768px) { .project-hero-content { padding: 0 24px 40px; } .project-body, .gallery-section, .video-section { padding: 48px 24px; } .gallery-grid { grid-template-columns: 1fr; } .project-nav { padding: 40px 24px; flex-direction: column; gap: 24px; } .video-row { flex-direction: column; align-items: center; } .video-row .video-embed-wrap.vertical { flex: 0 1 auto; max-width: 320px; width: 100%; } }
   </style>
 </head>
 <body>
@@ -103,7 +110,7 @@
   <!-- BODY COPY -->
   <div class="project-body">
     <p class="project-intro">The first time an NFL franchise invested directly in a Canadian youth football league. We made the campaign that launched it.</p>
-    <div class="project-copy"><p>RAW Sports brought us in to produce the promotional campaign announcing the Junior Cardinals Flag Football League, a Calgary youth league built in direct partnership with the Arizona Cardinals. It marked a genuine first: an NFL organization investing directly into Canadian youth football, and the campaign had to carry the significance of that moment while driving real registrations on the ground. We led the creative throughout, from concept to scripting and directing. The work drove over 195,000 views and more than 700 players registered for the league's inaugural season.</p><p>The Announcement</p><p>Filmed in Arizona with RAW owners Robbert and Anthony Woodson alongside the Cardinals cheerleaders and their mascot Big Red, the announcement opens on a scripted comedic skit before shifting into an informative section laying out what the league actually offers: real NFL involvement, professional coaching, stat tracking, game film, and open access for kids across Calgary. The strategy was to lead with entertainment, an opening that's fun and exciting to watch, and use that energy to carry the informational and promotional weight that follows. A balance that keeps people watching through the details most ads lose them on. We scripted the full piece, including the voiceover that anchors the informative half, with the Cardinals' media team running camera. The main video was accompanied by a second, fully separate edit, built to extend the reach of the launch.</p><p>Draft Day</p><p>The “Draft Day” video was a separate production that brought the campaign home to Calgary, this time with the Cardinals crew flying up for the shoot at Shouldice Field. It carries the same cast, Robbert, Anthony, Cardinals cheerleaders, and Big Red, now alongside a group of the Junior Cardinals league's own participants. The first half continues the scripted, comedic tone of the announcement. From there it opens into a compilation of draft day footage that captures the energy of the league. We handled the full creative start to finish, scripting, directing, and editing, with the Cardinals' videographer capturing the event coverage in the back half.</p></div>
+    <div class="project-copy"><p>RAW Sports brought us in to produce the promotional campaign announcing the Junior Cardinals Flag Football League, a Calgary youth league built in direct partnership with the Arizona Cardinals. It marked a genuine first: an NFL organization investing directly into Canadian youth football, and the campaign had to carry the significance of that moment while driving real registrations on the ground. We led the creative throughout, from concept to scripting and directing. The work drove over 195,000 views and more than 700 players registered for the league's inaugural season.</p><p>The Announcement</p><p>Filmed in Arizona with RAW owners Robbert and Anthony Woodson alongside the Cardinals cheerleaders and their mascot Big Red, the announcement opens on a scripted comedic skit before shifting into an informative section laying out what the league actually offers: real NFL involvement, professional coaching, stat tracking, game film, and open access for kids across Calgary. The strategy was to lead with entertainment, an opening that's fun and exciting to watch, and use that energy to carry the informational and promotional weight that follows. A balance that keeps people watching through the details most ads lose them on. We scripted the full piece, including the voiceover that anchors the informative half, with the Cardinals' media team running camera. The main video was accompanied by a second, fully separate edit, built to extend the reach of the launch.</p><p>Draft Day</p><p>The "Draft Day" video was a separate production that brought the campaign home to Calgary, this time with the Cardinals crew flying up for the shoot at Shouldice Field. It carries the same cast, Robbert, Anthony, Cardinals cheerleaders, and Big Red, now alongside a group of the Junior Cardinals league's own participants. The first half continues the scripted, comedic tone of the announcement. From there it opens into a compilation of draft day footage that captures the energy of the league. We handled the full creative start to finish, scripting, directing, and editing, with the Cardinals' videographer capturing the event coverage in the back half.</p></div>
 
     <!-- RESULT STATS — edit or remove as needed -->
     <div class="project-result-bar">
@@ -113,20 +120,19 @@
 
   <!-- EMBED VIDEO SECTION -->
   <section class="video-section">
-    <div class="section-label" style="margin-bottom:32px;">Watch the Film</div>
-    <div class="video-embed-wrap">
-      <!--
-        OPTION A — YouTube/Vimeo embed:
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
-
-        OPTION B — Self-hosted video:
-        <video controls poster="../images/raw-poster.jpg">
-          <source src="../images/raw.mp4" type="video/mp4">
-        </video>
-      -->
-      <div class="video-placeholder">
-        <span class="video-placeholder-icon">▶</span>
-        <span class="video-placeholder-text">Add video embed or file above</span>
+    <div class="section-label" style="margin-bottom:32px;">Watch the Films</div>
+    <div class="video-row">
+      <div class="video-row-item">
+        <div class="video-embed-wrap vertical">
+          <iframe src="https://www.youtube.com/embed/wJENxAxZANs" allowfullscreen></iframe>
+        </div>
+        <div class="video-row-label">The Announcement</div>
+      </div>
+      <div class="video-row-item">
+        <div class="video-embed-wrap vertical">
+          <iframe src="https://www.youtube.com/embed/PJr0dvdJZZU" allowfullscreen></iframe>
+        </div>
+        <div class="video-row-label">Draft Day</div>
       </div>
     </div>
   </section>
