@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ongoing Brand Media — COLOSSEUM</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .service-hero { position: relative; width: 100%; height: 80vh; min-height: 500px; background: var(--black); overflow: hidden; display: flex; align-items: flex-end; }
+    .service-hero-visual { position: absolute; inset: 0; background: linear-gradient(135deg, #1a0a00, #2a1000); display: flex; align-items: center; justify-content: center; }
+    .service-hero-visual img, .service-hero-visual video { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+    .service-hero-icon { font-size: 160px; opacity: 0.1; position: relative; z-index: 1; }
+    .service-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 60%); }
+    .service-hero-content { position: relative; z-index: 2; padding: 0 80px 64px; width: 100%; }
+    .service-hero-num { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .service-hero-tagline { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .service-hero-title { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); letter-spacing: 0.03em; line-height: 0.9; max-width: 900px; }
+
+    .service-body { max-width: 1100px; margin: 0 auto; padding: 80px; }
+    .service-intro { font-family: var(--font-condensed); font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; color: var(--white); line-height: 1.5; margin-bottom: 56px; border-left: 3px solid var(--gold); padding-left: 32px; }
+    .service-copy { font-size: 16px; color: var(--light-grey); line-height: 1.9; margin-bottom: 24px; }
+
+    .impact-section { background: var(--dark); padding: 80px; }
+    .impact-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; margin-bottom: 56px; }
+    .impact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .impact-card { background: rgba(0,0,0,0.4); padding: 40px 36px; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .impact-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .impact-card:hover::before { transform: scaleX(1); }
+    .impact-card:hover { background: rgba(255,215,0,0.04); }
+    .impact-card-title { font-family: var(--font-condensed); font-size: 16px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
+    .impact-card-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+
+    .coverage-section { padding: 100px 80px; background: var(--black); }
+    .coverage-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; margin-bottom: 24px; }
+    .coverage-sub { font-size: 16px; color: var(--grey); line-height: 1.8; max-width: 700px; margin-bottom: 56px; }
+    .coverage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+    .coverage-col-title { font-family: var(--font-condensed); font-size: 14px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,215,0,0.2); }
+    .coverage-list { display: flex; flex-direction: column; gap: 14px; }
+    .coverage-item { font-size: 15px; color: var(--light-grey); line-height: 1.6; display: flex; align-items: flex-start; gap: 12px; }
+    .coverage-item::before { content: ''; display: block; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+    .coverage-note { font-size: 14px; color: var(--grey); font-style: italic; margin-top: 48px; max-width: 700px; line-height: 1.7; }
+
+    .process-section { padding: 100px 80px; background: var(--dark); }
+    .process-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; margin-bottom: 56px; }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .process-step { position: relative; }
+    .process-num { font-family: var(--font-display); font-size: 48px; color: rgba(255,215,0,0.15); line-height: 1; margin-bottom: 16px; }
+    .process-step-title { font-family: var(--font-condensed); font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .process-step-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+
+    .who-section { padding: 100px 80px; background: var(--black); text-align: center; }
+    .who-copy { font-size: 18px; color: var(--light-grey); line-height: 1.8; max-width: 700px; margin: 0 auto; }
+
+    .cta-block { padding: 120px 80px; background: var(--dark); text-align: center; }
+    .cta-block-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 40px; }
+
+    .service-nav { padding: 64px 80px; background: var(--black); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+    .service-nav a { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .service-nav a:hover { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .service-body, .impact-section, .coverage-section, .process-section, .who-section, .cta-block { padding: 64px 40px; }
+      .service-hero-content { padding: 0 40px 48px; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .coverage-grid { grid-template-columns: 1fr; gap: 40px; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .service-hero-content { padding: 0 24px 40px; }
+      .service-body, .impact-section, .coverage-section, .process-section, .who-section, .cta-block { padding: 48px 24px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .service-nav { padding: 40px 24px; flex-direction: column; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/logo.png" alt="Colosseum">
+      <span class="nav-logo-text">COLOSSEUM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../services.html" class="active">Services</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../portfolio.html">Portfolio</a>
+    <a href="../services.html">Services</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="service-hero">
+    <div class="service-hero-visual">
+      <!--
+        ADD HERO IMAGE OR VIDEO:
+        <video autoplay muted loop playsinline><source src="../images/brandmedia-hero.mp4" type="video/mp4"></video>
+      -->
+      <span class="service-hero-icon">📈</span>
+    </div>
+    <div class="service-hero-overlay"></div>
+    <div class="service-hero-content">
+      <div class="service-hero-num">04</div>
+      <div class="service-hero-tagline">Ongoing Brand Media</div>
+      <h1 class="service-hero-title">CONSISTENT. CREATIVE.<br>BUILT AROUND WHAT YOU NEED TO GROW.</h1>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="service-body">
+    <p class="service-intro">The brands that win online aren't the ones that post when they remember to.</p>
+    <div class="service-copy">
+      <p>They're the ones that show up consistently with content that actually means something to their audience. Ongoing Brand Media gives you a dedicated creative team that understands your world, plans around your calendar, and produces consistent, high quality content that builds your following, attracts new customers, and gets results.</p>
+    </div>
+  </div>
+
+  <!-- WHAT THIS DOES -->
+  <section class="impact-section">
+    <h2 class="impact-title">WHAT THIS DOES<br>FOR YOUR BRAND</h2>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <div class="impact-card-title">Builds Your Following</div>
+        <p class="impact-card-desc">Consistent, high quality content that gives people a reason to follow, engage, and keep coming back.</p>
+      </div>
+      <div class="impact-card reveal reveal-delay-1">
+        <div class="impact-card-title">Attracts New Customers</div>
+        <p class="impact-card-desc">Content engineered around your brand's objectives, whether that's driving direct sales, building awareness, or expanding your reach into new audiences.</p>
+      </div>
+      <div class="impact-card reveal">
+        <div class="impact-card-title">Builds Brand Equity</div>
+        <p class="impact-card-desc">The brands people love aren't just selling products. They're building something people want to be associated with. We help you build that through content that reflects who you actually are.</p>
+      </div>
+      <div class="impact-card reveal reveal-delay-1">
+        <div class="impact-card-title">Creates Loyalty</div>
+        <p class="impact-card-desc">Brands that show up consistently and authentically build fans, not just customers. We produce the content that makes people care about your brand beyond the transaction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section class="coverage-section">
+    <h2 class="coverage-title">WHAT THIS LOOKS LIKE</h2>
+    <p class="coverage-sub">Every partnership is scoped around your brand's specific needs, your content calendar, and your budget. Here's what we can cover.</p>
+    <div class="coverage-grid">
+      <div>
+        <div class="coverage-col-title">Content Production</div>
+        <div class="coverage-list">
+          <div class="coverage-item">Video and photo productions</div>
+          <div class="coverage-item">Product launch and campaign content</div>
+          <div class="coverage-item">Athlete partnership content</div>
+          <div class="coverage-item">Brand culture and behind the scenes content</div>
+        </div>
+      </div>
+      <div>
+        <div class="coverage-col-title">Social Media Content</div>
+        <div class="coverage-list">
+          <div class="coverage-item">Platform specific content cuts and formats</div>
+          <div class="coverage-item">Reels, short form video, and static content</div>
+          <div class="coverage-item">Graphic assets and templates</div>
+        </div>
+      </div>
+      <div>
+        <div class="coverage-col-title">Campaign Support</div>
+        <div class="coverage-list">
+          <div class="coverage-item">New product launch content</div>
+          <div class="coverage-item">Event coverage and promotional content</div>
+          <div class="coverage-item">Seasonal campaign productions</div>
+        </div>
+      </div>
+    </div>
+    <p class="coverage-note">Every partnership looks different. The plan gets built around what your brand actually needs.</p>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <h2 class="process-title">HOW IT WORKS</h2>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div class="process-step-title">Discovery Meeting</div>
+        <p class="process-step-desc">We sit down and get deep on your brand. Who you are, who your audience is, and what you're trying to build.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">02</div>
+        <div class="process-step-title">Understand Your Calendar</div>
+        <p class="process-step-desc">Before we build anything we need to know what's coming. New product drops, events, campaigns, promotions.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">03</div>
+        <div class="process-step-title">Quarterly Content Plan</div>
+        <p class="process-step-desc">We go to the drawing board and map out the quarter ahead. What gets produced, when it goes out, and how each piece serves your brand.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">04</div>
+        <div class="process-step-title">Produce and Deliver</div>
+        <p class="process-step-desc">We execute consistently. New content, fresh ideas, same standard every time. The longer we work together the stronger your presence becomes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="who-section">
+    <div class="section-label reveal" style="justify-content:center;"><span style="width:0"></span>Who It's For</div>
+    <p class="who-copy reveal">For brands and businesses that are serious about their content and ready to approach it with a real strategy behind it. Whether you're a sports brand looking to build cultural relevance, a product brand that needs consistent high quality content, or a growing business that wants a dedicated creative team in their corner, this is built for you.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block">
+    <h2 class="cta-block-title reveal">LET'S BUILD SOMETHING<br>THAT <span style="color:var(--gold)">COMPOUNDS.</span></h2>
+    <p style="color:var(--grey); margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto;" class="reveal">Tell us about your brand and what you're trying to build. We'll put together a plan.</p>
+    <a href="../contact.html" class="btn btn-gold reveal">Start a Conversation</a>
+  </section>
+
+  <!-- SERVICE NAV -->
+  <div class="service-nav">
+    <a href="../services.html">← All Services</a>
+    <a href="../contact.html" class="btn btn-gold">Start a Conversation</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="../images/logo.png" alt="Colosseum" style="height:36px;">
+          <span class="nav-logo-text">COLOSSEUM</span>
+        </div>
+        <p>Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../portfolio.html">Portfolio</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/colosseumsports_" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/colosseum-marketing-incorp" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Colosseum Creative Agency. All rights reserved.</p>
+      <p>Calgary, Alberta, Canada</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

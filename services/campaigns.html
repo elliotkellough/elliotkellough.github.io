@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Campaigns — COLOSSEUM</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .service-hero { position: relative; width: 100%; height: 80vh; min-height: 500px; background: var(--black); overflow: hidden; display: flex; align-items: flex-end; }
+    .service-hero-visual { position: absolute; inset: 0; background: linear-gradient(135deg, #0d0d00, #1a1900); display: flex; align-items: center; justify-content: center; }
+    .service-hero-visual img, .service-hero-visual video { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+    .service-hero-icon { font-size: 160px; opacity: 0.1; position: relative; z-index: 1; }
+    .service-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 60%); }
+    .service-hero-content { position: relative; z-index: 2; padding: 0 80px 64px; width: 100%; }
+    .service-hero-num { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .service-hero-tagline { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .service-hero-title { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); letter-spacing: 0.03em; line-height: 0.9; max-width: 900px; }
+
+    .service-body { max-width: 1100px; margin: 0 auto; padding: 80px; }
+    .service-intro { font-family: var(--font-condensed); font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; color: var(--white); line-height: 1.5; margin-bottom: 56px; border-left: 3px solid var(--gold); padding-left: 32px; }
+    .service-copy { font-size: 16px; color: var(--light-grey); line-height: 1.9; margin-bottom: 24px; }
+
+    .outcomes-section { background: var(--dark); padding: 80px; }
+    .outcomes-header { max-width: 700px; margin-bottom: 56px; }
+    .outcomes-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 20px; }
+    .outcomes-sub { font-size: 16px; color: var(--grey); line-height: 1.8; }
+    .outcomes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+    .outcome-card { background: rgba(0,0,0,0.4); padding: 40px 36px; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .outcome-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .outcome-card:hover::before { transform: scaleX(1); }
+    .outcome-card:hover { background: rgba(255,215,0,0.04); }
+    .outcome-title { font-family: var(--font-condensed); font-size: 16px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
+    .outcome-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+    .outcomes-note { font-size: 14px; color: var(--grey); font-style: italic; margin-top: 32px; max-width: 700px; line-height: 1.7; }
+
+    .process-section { padding: 100px 80px; background: var(--black); }
+    .process-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; margin-bottom: 56px; }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    .process-step { position: relative; }
+    .process-num { font-family: var(--font-display); font-size: 48px; color: rgba(255,215,0,0.15); line-height: 1; margin-bottom: 16px; }
+    .process-step-title { font-family: var(--font-condensed); font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .process-step-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+
+    .cta-block { padding: 120px 80px; background: var(--dark); text-align: center; }
+    .cta-block-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 40px; }
+
+    .service-nav { padding: 64px 80px; background: var(--black); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+    .service-nav a { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .service-nav a:hover { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .service-body, .outcomes-section, .process-section, .cta-block { padding: 64px 40px; }
+      .service-hero-content { padding: 0 40px 48px; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .service-hero-content { padding: 0 24px 40px; }
+      .service-body, .outcomes-section, .process-section, .cta-block { padding: 48px 24px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .service-nav { padding: 40px 24px; flex-direction: column; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/logo.png" alt="Colosseum">
+      <span class="nav-logo-text">COLOSSEUM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../services.html" class="active">Services</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../portfolio.html">Portfolio</a>
+    <a href="../services.html">Services</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="service-hero">
+    <div class="service-hero-visual">
+      <!--
+        ADD HERO IMAGE OR VIDEO:
+        <video autoplay muted loop playsinline><source src="../images/campaigns-hero.mp4" type="video/mp4"></video>
+      -->
+      <span class="service-hero-icon">🎬</span>
+    </div>
+    <div class="service-hero-overlay"></div>
+    <div class="service-hero-content">
+      <div class="service-hero-num">01</div>
+      <div class="service-hero-tagline">Creative Campaigns</div>
+      <h1 class="service-hero-title">EVERY BRIEF IS DIFFERENT.<br>EVERY PRODUCTION IS BUILT FOR YOURS.</h1>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="service-body">
+    <p class="service-intro">We work with brands, organizations, and events that need content with a purpose.</p>
+    <div class="service-copy">
+      <p>Whether that's driving direct awareness for a launch, building equity around a product, or telling the story behind what your brand stands for, we start by figuring out exactly what success looks like for you.</p>
+      <p>From there we build everything around that objective. The concept, the creative direction, the athletes, the production. Nothing gets decided until we know what we're working toward.</p>
+    </div>
+  </div>
+
+  <!-- OUTCOMES -->
+  <section class="outcomes-section">
+    <div class="outcomes-header">
+      <h2 class="outcomes-title">WHAT DOES SUCCESS<br>LOOK LIKE FOR YOU?</h2>
+      <p class="outcomes-sub">Every campaign we build starts with this question. The answer is what shapes the entire creative and strategic approach. These are the outcomes our clients come to us for.</p>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal">
+        <div class="outcome-title">Sales and Conversions</div>
+        <p class="outcome-desc">Content engineered to move product, drive traffic, and bring customers in.</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-title">Brand Awareness</div>
+        <p class="outcome-desc">Getting the right people to know you exist and remember why they should care.</p>
+      </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-title">Brand Storytelling</div>
+        <p class="outcome-desc">Communicating what your brand actually stands for. The message behind the product, the values behind the company, the story worth telling.</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <div class="outcome-title">Brand Content</div>
+        <p class="outcome-desc">Visually distinct, high quality content that represents your brand at its best across every platform.</p>
+      </div>
+    </div>
+    <p class="outcomes-note">These outcomes aren't mutually exclusive. Most strong campaigns deliver more than one. What we align on first is which one leads, because that's what the strategy gets built around.</p>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <h2 class="process-title">HOW WE BUILD IT</h2>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div class="process-step-title">Define Success</div>
+        <p class="process-step-desc">Once we know what outcome you're building toward, we get specific. Who is the audience, what do we need them to feel, and what do we need them to do.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">02</div>
+        <div class="process-step-title">Build the Strategy</div>
+        <p class="process-step-desc">With the objective clear we develop the creative and marketing approach. The concept, the message, the audience, and what will make them respond.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">03</div>
+        <div class="process-step-title">Develop the Creative</div>
+        <p class="process-step-desc">The narrative, the athlete partnerships, the shot design. Everything is planned and locked before we arrive on set. Nothing gets figured out on the day.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-num">04</div>
+        <div class="process-step-title">Produce and Deliver</div>
+        <p class="process-step-desc">Colour, audio, pacing, and graphics. Every element of post-production is part of the standard, never an afterthought. We work with you on a distribution plan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block">
+    <h2 class="cta-block-title reveal">LET'S BUILD SOMETHING<br><span style="color:var(--gold)">WORTH WATCHING.</span></h2>
+    <p style="color:var(--grey); margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto;" class="reveal">Tell us about your project and we'll take it from there.</p>
+    <a href="../contact.html" class="btn btn-gold reveal">Start a Project</a>
+  </section>
+
+  <!-- SERVICE NAV -->
+  <div class="service-nav">
+    <a href="../services.html">← All Services</a>
+    <a href="../contact.html" class="btn btn-gold">Start a Project</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="../images/logo.png" alt="Colosseum" style="height:36px;">
+          <span class="nav-logo-text">COLOSSEUM</span>
+        </div>
+        <p>Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../portfolio.html">Portfolio</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/colosseumsports_" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/colosseum-marketing-incorp" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Colosseum Creative Agency. All rights reserved.</p>
+      <p>Calgary, Alberta, Canada</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

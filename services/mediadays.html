@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Days — COLOSSEUM</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .service-hero { position: relative; width: 100%; height: 80vh; min-height: 500px; background: var(--black); overflow: hidden; display: flex; align-items: flex-end; }
+    .service-hero-visual { position: absolute; inset: 0; background: linear-gradient(135deg, #000d1a, #001a2a); display: flex; align-items: center; justify-content: center; }
+    .service-hero-visual img, .service-hero-visual video { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+    .service-hero-icon { font-size: 160px; opacity: 0.1; position: relative; z-index: 1; }
+    .service-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.2) 60%); }
+    .service-hero-content { position: relative; z-index: 2; padding: 0 80px 64px; width: 100%; }
+    .service-hero-num { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.3em; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .service-hero-tagline { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .service-hero-title { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); letter-spacing: 0.03em; line-height: 0.9; max-width: 900px; }
+
+    .service-body { max-width: 1100px; margin: 0 auto; padding: 80px; }
+    .service-intro { font-family: var(--font-condensed); font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; color: var(--white); line-height: 1.5; margin-bottom: 56px; border-left: 3px solid var(--gold); padding-left: 32px; }
+    .service-copy { font-size: 16px; color: var(--light-grey); line-height: 1.9; margin-bottom: 24px; }
+    .service-copy-note { font-size: 15px; color: var(--grey); font-style: italic; line-height: 1.8; margin-top: 32px; }
+
+    .offerings-section { background: var(--dark); padding: 80px; }
+    .offerings-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; margin-bottom: 56px; max-width: 700px; }
+    .offerings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .offering-card { background: rgba(0,0,0,0.4); padding: 40px 32px; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; transition: all 0.3s ease; }
+    .offering-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+    .offering-card:hover::before { transform: scaleX(1); }
+    .offering-card:hover { background: rgba(255,215,0,0.04); }
+    .offering-title { font-family: var(--font-condensed); font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); margin-bottom: 14px; }
+    .offering-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+
+    .packages-section { padding: 100px 80px; background: var(--black); }
+    .packages-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; margin-bottom: 56px; }
+    .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .package-card { background: var(--dark); padding: 44px 36px; border: 1px solid rgba(255,255,255,0.05); position: relative; transition: all 0.3s ease; }
+    .package-card.featured { border-color: rgba(255,215,0,0.3); }
+    .package-name { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.06em; color: var(--gold); margin-bottom: 20px; }
+    .package-desc { font-size: 14px; color: var(--light-grey); line-height: 1.75; margin-bottom: 20px; }
+    .package-best-for { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 20px; }
+    .packages-note { font-size: 14px; color: var(--grey); font-style: italic; margin-top: 32px; max-width: 700px; line-height: 1.7; }
+
+    .process-section { padding: 100px 80px; background: var(--dark); }
+    .process-title { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); letter-spacing: 0.04em; margin-bottom: 56px; }
+    .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .process-step { position: relative; }
+    .process-num { font-family: var(--font-display); font-size: 48px; color: rgba(255,215,0,0.15); line-height: 1; margin-bottom: 16px; }
+    .process-step-title { font-family: var(--font-condensed); font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .process-step-desc { font-size: 14px; color: var(--grey); line-height: 1.7; }
+
+    .who-section { padding: 100px 80px; background: var(--black); text-align: center; }
+    .who-copy { font-size: 18px; color: var(--light-grey); line-height: 1.8; max-width: 700px; margin: 0 auto; }
+
+    .cta-block { padding: 120px 80px; background: var(--dark); text-align: center; }
+    .cta-block-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 40px; }
+
+    .service-nav { padding: 64px 80px; background: var(--black); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+    .service-nav a { font-family: var(--font-condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .service-nav a:hover { color: var(--gold); }
+
+    @media (max-width: 1024px) {
+      .service-body, .offerings-section, .packages-section, .process-section, .who-section, .cta-block { padding: 64px 40px; }
+      .service-hero-content { padding: 0 40px 48px; }
+      .offerings-grid, .packages-grid, .process-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .service-hero-content { padding: 0 24px 40px; }
+      .service-body, .offerings-section, .packages-section, .process-section, .who-section, .cta-block { padding: 48px 24px; }
+      .service-nav { padding: 40px 24px; flex-direction: column; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="../index.html" class="nav-logo">
+      <img src="../images/logo.png" alt="Colosseum">
+      <span class="nav-logo-text">COLOSSEUM</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../services.html" class="active">Services</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../portfolio.html">Portfolio</a>
+    <a href="../services.html">Services</a>
+    <a href="../contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="service-hero">
+    <div class="service-hero-visual">
+      <!--
+        ADD HERO IMAGE OR VIDEO:
+        <video autoplay muted loop playsinline><source src="../images/mediadays-hero.mp4" type="video/mp4"></video>
+      -->
+      <span class="service-hero-icon">📸</span>
+    </div>
+    <div class="service-hero-overlay"></div>
+    <div class="service-hero-content">
+      <div class="service-hero-num">02</div>
+      <div class="service-hero-tagline">Media Days</div>
+      <h1 class="service-hero-title">ONE SHOOT DAY.<br>A FULL SEASON OF CONTENT.</h1>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="service-body">
+    <p class="service-intro">How your program looks on the outside is just as important as what happens on the field.</p>
+    <div class="service-copy">
+      <p>Running an athletic program at the highest level takes real commitment. Most coaches know that for recruits, parents, and the broader community, your media is the first impression, and it shapes how seriously your program gets taken before anyone ever steps foot in your facility.</p>
+      <p>But producing consistent, professional content takes time, equipment, and expertise most programs simply don't have on staff. A Colosseum Media Day gives your program everything it needs in a single shoot day, so your staff can stay focused on what matters most.</p>
+    </div>
+  </div>
+
+  <!-- WHAT WE OFFER -->
+  <section class="offerings-section">
+    <h2 class="offerings-title">WHAT WE OFFER</h2>
+    <p style="color:var(--grey); font-size:16px; line-height:1.8; max-width:700px; margin-bottom:56px;">Every program has different needs and a different budget. Whether you're a professional organization looking for a fully customized media production or a youth team wanting professional photos your athletes are proud of, we build around what fits your program.</p>
+    <div class="offerings-grid">
+      <div class="offering-card reveal">
+        <div class="offering-title">Player Photos</div>
+        <p class="offering-desc">Not your standard backdrop and smile setup. These are creative, professionally lit individual shots that players are genuinely excited to post. Built for social media, recruiting profiles, and anywhere your athletes need to show up looking their best.</p>
+      </div>
+      <div class="offering-card reveal reveal-delay-1">
+        <div class="offering-title">Hype Videos</div>
+        <p class="offering-desc">Cinematic team content that builds excitement around your program. Season openers, player features, and promotional videos your athletes actually want to share.</p>
+      </div>
+      <div class="offering-card reveal reveal-delay-2">
+        <div class="offering-title">Custom Graphics</div>
+        <p class="offering-desc">Game day graphics, final score templates, player features, and commitment announcements. Designed around your program's identity and ready to use all season.</p>
+      </div>
+    </div>
+    <p class="service-copy-note">Not sure what fits your program? Start with a discovery call and we'll figure it out together.</p>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="packages-section">
+    <h2 class="packages-title">THE PACKAGES</h2>
+    <div class="packages-grid">
+      <div class="package-card reveal">
+        <div class="package-name">ESSENTIALS</div>
+        <p class="package-desc">Professional studio-style player photos with clean backdrops and pro lighting. The foundation every program needs.</p>
+        <div class="package-best-for">Best for: Programs establishing a consistent, professional visual standard.</div>
+      </div>
+      <div class="package-card featured reveal reveal-delay-1">
+        <div class="package-name">PRO</div>
+        <p class="package-desc">Everything in Essentials plus a cinematic team hype video, custom graphics templates for game day, final scores, player features, and commitment announcements, plus position group and senior photos.</p>
+        <div class="package-best-for">Best for: Programs that want their content fully handled for the season.</div>
+      </div>
+      <div class="package-card reveal reveal-delay-2">
+        <div class="package-name">ELITE</div>
+        <p class="package-desc">Everything in Pro plus a fully custom shoot concept built around your program's identity, a season promo video package, and a complete organized media library accessible year-round.</p>
+        <div class="package-best-for">Best for: Programs that want the look and feel of a Division 1 media department.</div>
+      </div>
+    </div>
+    <p class="packages-note">Packages are priced by roster size. Start with a discovery call and we'll find the right fit for your program and your budget.</p>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <h2 class="process-title">HOW IT WORKS</h2>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div class="process-step-title">Discovery Call</div>
+        <p class="process-step-desc">Tell us about your program. We'll figure out which package fits your roster, your goals, and your budget.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">02</div>
+        <div class="process-step-title">Shoot Day</div>
+        <p class="process-step-desc">We arrive with everything. Lighting, backdrops, equipment, and creative direction. Your athletes show up and we handle the rest.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">03</div>
+        <div class="process-step-title">Delivery</div>
+        <p class="process-step-desc">Edited photos, videos, and graphics delivered in a clean digital library your staff can actually use.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="who-section">
+    <div class="section-label reveal" style="justify-content:center;"><span style="width:0"></span>Who It's For</div>
+    <p class="who-copy reveal">For programs serious about how they show up to recruits, parents, and their community. If you'd rather spend your time coaching than managing content, we've got the media side covered.</p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-block">
+    <h2 class="cta-block-title reveal">READY TO GIVE YOUR PROGRAM<br>THE MEDIA IT <span style="color:var(--gold)">DESERVES?</span></h2>
+    <p style="color:var(--grey); margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto;" class="reveal">Start with a discovery call and we'll build the right package around what your program needs.</p>
+    <a href="../contact.html" class="btn btn-gold reveal">Book a Discovery Call</a>
+  </section>
+
+  <!-- SERVICE NAV -->
+  <div class="service-nav">
+    <a href="../services.html">← All Services</a>
+    <a href="../contact.html" class="btn btn-gold">Book a Discovery Call</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="../images/logo.png" alt="Colosseum" style="height:36px;">
+          <span class="nav-logo-text">COLOSSEUM</span>
+        </div>
+        <p>Premium creative agency specializing in sports, brands, events, and cinematic storytelling. Based in Calgary, Canada.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../portfolio.html">Portfolio</a></li>
+          <li><a href="../services.html">Services</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.instagram.com/colosseumsports_" class="social-link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/colosseum-marketing-incorp" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Colosseum Creative Agency. All rights reserved.</p>
+      <p>Calgary, Alberta, Canada</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
