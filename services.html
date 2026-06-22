@@ -44,6 +44,14 @@
     .service-visual { aspect-ratio: 16/10; position: relative; overflow: hidden; }
     .service-visual-inner { width: 100%; height: 100%; transition: transform 0.7s ease; display: flex; align-items: center; justify-content: center; }
     .service-entry:hover .service-visual-inner { transform: scale(1.04); }
+    .service-visual-inner img,
+    .service-visual-inner video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0; left: 0;
+    }
     .service-num { position: absolute; top: 24px; left: 24px; font-family: var(--font-display); font-size: 13px; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); z-index: 2; }
     .service-info { padding: 56px 64px; display: flex; flex-direction: column; justify-content: center; }
     .service-tagline { font-family: var(--font-condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
@@ -107,7 +115,7 @@
     <div class="service-entry reveal" id="campaigns">
       <div class="service-visual">
         <div class="service-visual-inner bg-campaigns">
-          <span class="service-icon">🎬</span>
+          <video autoplay muted loop playsinline><source src="images/campaigns-preview.mp4" type="video/mp4"></video>
         </div>
         <span class="service-num">01</span>
       </div>
@@ -122,7 +130,7 @@
     <div class="service-entry reveal" id="mediadays">
       <div class="service-visual">
         <div class="service-visual-inner bg-mediadays">
-          <span class="service-icon">📸</span>
+          <video autoplay muted loop playsinline><source src="images/mediadays-preview.mp4" type="video/mp4"></video>
         </div>
         <span class="service-num">02</span>
       </div>
@@ -137,7 +145,7 @@
     <div class="service-entry reveal" id="partnership">
       <div class="service-visual">
         <div class="service-visual-inner bg-partnership">
-          <span class="service-icon">🤝</span>
+          <video autoplay muted loop playsinline><source src="images/partnership-preview.mp4" type="video/mp4"></video>
         </div>
         <span class="service-num">03</span>
       </div>
@@ -152,7 +160,7 @@
     <div class="service-entry reveal" id="brandmedia">
       <div class="service-visual">
         <div class="service-visual-inner bg-brandmedia">
-          <span class="service-icon">📈</span>
+          <video autoplay muted loop playsinline><source src="images/brandmedia-preview.mp4" type="video/mp4"></video>
         </div>
         <span class="service-num">04</span>
       </div>
