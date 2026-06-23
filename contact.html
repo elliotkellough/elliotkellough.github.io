@@ -212,13 +212,38 @@
       const messageField = document.getElementById('field-message');
       if (!message.value.trim()) { messageField.classList.add('has-error'); valid = false; } else { messageField.classList.remove('has-error'); }
       if (!valid) return;
+
       const btn = document.getElementById('submitBtn');
       btn.textContent = 'Sending...';
       btn.disabled = true;
-      setTimeout(() => {
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('formSuccess').classList.add('show');
-      }, 800);
+
+      const formData = new FormData();
+      formData.append('name', name.value);
+      formData.append('email', email.value);
+      formData.append('company', document.getElementById('company').value);
+      formData.append('service', document.getElementById('service').value);
+      formData.append('message', message.value);
+
+      fetch('https://formspree.io/f/xlgyeqle', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          document.getElementById('contactForm').style.display = 'none';
+          document.getElementById('formSuccess').classList.add('show');
+        } else {
+          btn.textContent = 'Send Inquiry';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again or email us directly.');
+        }
+      })
+      .catch(() => {
+        btn.textContent = 'Send Inquiry';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email us directly.');
+      });
     }
     document.querySelectorAll('input, textarea').forEach(input => {
       input.addEventListener('input', () => { input.closest('.form-field').classList.remove('has-error'); });
