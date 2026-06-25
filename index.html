@@ -94,10 +94,9 @@
       display: flex;
       align-items: center;
       gap: 64px;
-      animation: scroll-logos 30s linear infinite;
       width: max-content;
+      will-change: transform;
     }
-    .logos-track:hover { animation-play-state: paused; }
 
     /* Logo image items */
     .logo-item {
@@ -123,11 +122,6 @@
       padding: 0 16px;
     }
     .logo-item-text:hover { color: rgba(255,255,255,0.75); }
-
-    @keyframes scroll-logos {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
 
     /* ─── FEATURED WORK ─── */
     .work-section { padding: 120px 80px; background: var(--black); }
@@ -390,5 +384,39 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      const track = document.getElementById('logosTrack');
+      if (!track) return;
+
+      function startLoop() {
+        const fullWidth = track.scrollWidth / 2;
+        let pos = 0;
+        const speed = 40;
+        let last = performance.now();
+
+        function step(now) {
+          const dt = (now - last) / 1000;
+          last = now;
+          pos -= speed * dt;
+          if (pos <= -fullWidth) pos += fullWidth;
+          track.style.transform = `translateX(${pos}px)`;
+          requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      const images = track.querySelectorAll('img');
+      let loaded = 0;
+      if (images.length === 0) { startLoop(); return; }
+      images.forEach(img => {
+        if (img.complete) { loaded++; if (loaded === images.length) startLoop(); }
+        else {
+          img.addEventListener('load', () => { loaded++; if (loaded === images.length) startLoop(); });
+          img.addEventListener('error', () => { loaded++; if (loaded === images.length) startLoop(); });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
